@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Note Manager</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+</head>
+<body>
+
+
+  <div class="container mt-4">
+    <h1> Gestionnaire de Notes</h1>
+    <div class="row">
+      <!-- Form column -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 id="form-title">Créer une note</h5>
+            <form id="note-form" novalidate>
+              <div class="form-group">
+                <label for="note-title">Titre</label>
+                <input type="text" id="note-title" class="form-control" placeholder="Titre">
+              </div>
+              <div class="form-group">
+                <label for="note-desc">Description</label>
+                <textarea id="note-desc" class="form-control" rows="6" placeholder="Description"></textarea>
+              </div>
+              <div id="form-error" class="text-danger mb-2" style="display:none"></div>
+              <button id="submit-btn" class="btn btn-primary">Créer</button>
+              <button id="cancel-btn" type="button" class="btn btn-secondary ml-2" style="display:none">Annuler</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes list column -->
+      <div class="col-md-8">
+        <div id="notes-list" class="row"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
