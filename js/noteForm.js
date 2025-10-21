@@ -36,6 +36,11 @@ export default function NoteForm(rootSelector, onSubmit){
       formError.textContent = 'Le titre ne peut pas être vide.';
       return false;
     }
+    if(titleInput.value.length < 4){
+      formError.style.display = 'block';
+      formError.textContent = 'Le titre doit contenir au moins 4 caractères.';
+      return false;
+    }
     formError.style.display = 'none';
     return true;
   }

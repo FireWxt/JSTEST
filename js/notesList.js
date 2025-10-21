@@ -12,7 +12,14 @@ export default function NotesList(rootSelector, { onSelect, onDelete }){
       return;
     }
 
-    notes.slice().reverse().forEach(note => {
+    // create a shallow copy and sort by title (case-insensitive, locale-aware)
+    const sorted = notes.slice().sort((a, b) => {
+      const ta = (a && a.title) ? a.title : '';
+      const tb = (b && b.title) ? b.title : '';
+      return ta.localeCompare(tb, undefined, { sensitivity: 'base' });
+    });
+
+    sorted.forEach(note => {
       const card = NoteCard(note, { onSelect, onDelete });
       card.setEditing(editingId === note.id);
       root.appendChild(card.el);

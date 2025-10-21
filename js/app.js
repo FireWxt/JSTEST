@@ -55,6 +55,8 @@ function render(){
   notesList.renderAll(notes, editingId);
 }
 
+
+
 // initial render
 render();
 
