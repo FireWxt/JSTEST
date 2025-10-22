@@ -45,5 +45,9 @@ export default function NoteCard(note, { onSelect, onDelete }){
 
   return { el: col, setEditing(isEditing){
     if(isEditing) card.classList.add('editing'); else card.classList.remove('editing');
+  }, setNew(isNew){
+    if(isNew) card.classList.add('note-new'); else card.classList.remove('note-new');
+    // also ensure the column wrapper doesn't collapse the animation
+    if(isNew) col.classList.add('note-col-new'); else col.classList.remove('note-col-new');
   } };
 }

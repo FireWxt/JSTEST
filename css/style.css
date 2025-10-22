@@ -127,6 +127,22 @@ textarea#note-desc{ min-height:140px; resize:vertical; }
   animation: note-remove 420ms cubic-bezier(.2,.9,.3,1) forwards;
 }
 
+/* new note pop-in animation */
+.note.note-new{
+  animation: note-pop 520ms cubic-bezier(.2,.9,.3,1) both;
+}
+
+@keyframes note-pop{
+  0%{ transform: translateY(6px) scale(.96); opacity:0; filter: blur(1px); }
+  40%{ transform: translateY(-2px) scale(1.02); opacity:1; filter: blur(0); }
+  100%{ transform: translateY(0) scale(1); opacity:1; }
+}
+
+/* helper to reserve space during animation to avoid layout jumps */
+.note-col.note-col-new{ /* keep the same width, add a little extra spacing while animating */
+  z-index:2; /* appear above others briefly */
+}
+
 @keyframes note-remove{
   0%{
     opacity:1;

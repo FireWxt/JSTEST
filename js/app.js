@@ -9,6 +9,7 @@ const notesRootSelector = '#notes-list';
 
 const notes = loadNotes() || [];
 let editingId = null;
+let lastAddedId = null;
 
 const noteForm = NoteForm('body', handleSubmit);
 const notesList = NotesList(notesRootSelector, { onSelect: handleSelect, onDelete: handleDelete });
@@ -33,6 +34,8 @@ function handleSubmit(payload, id){
     notes.push(note);
     persist();
     noteForm.setValues({ title: '', description: '', id: null });
+    // remember which id was just added so we can animate it in the list
+    lastAddedId = note.id;
     render();
   }
 }
@@ -52,7 +55,9 @@ function handleDelete(id){
 }
 
 function render(){
-  notesList.renderAll(notes, editingId);
+  notesList.renderAll(notes, editingId, lastAddedId);
+  // clear lastAddedId after rendering so animation only plays once
+  lastAddedId = null;
 }
 
 

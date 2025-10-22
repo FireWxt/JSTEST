@@ -5,7 +5,7 @@ export default function NotesList(rootSelector, { onSelect, onDelete }){
   const root = document.querySelector(rootSelector);
   if(!root) throw new Error('NotesList root not found: ' + rootSelector);
 
-  function renderAll(notes, editingId=null){
+  function renderAll(notes, editingId=null, highlightId=null){
     root.innerHTML = '';
     if(!notes || notes.length === 0){
       root.innerHTML = '<div class="col-12"><p class="text-muted">Aucune note. Créez-en une !</p></div>';
@@ -22,6 +22,11 @@ export default function NotesList(rootSelector, { onSelect, onDelete }){
     sorted.forEach(note => {
       const card = NoteCard(note, { onSelect, onDelete });
       card.setEditing(editingId === note.id);
+      // if this note was just added, mark it as new so CSS animation can play
+      if(highlightId && note.id === highlightId){
+        if(typeof card.setNew === 'function') card.setNew(true);
+        else card.el.classList.add('note-new');
+      }
       root.appendChild(card.el);
     });
   }
